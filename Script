@@ -1,0 +1,39 @@
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- GitHub Raw URLs
+local whitelistURL = "https://raw.githubusercontent.com/your-username/your-repo/main/whitelist.txt"
+local blacklistURL = "https://raw.githubusercontent.com/your-username/your-repo/main/blacklist.txt"
+
+-- Function to fetch data from GitHub
+local function getData(url)
+    local success, response = pcall(function()
+        return HttpService:GetAsync(url)
+    end)
+
+    if success then
+        return response
+    else
+        return nil
+    end
+end
+
+-- Fetch Whitelist & Blacklist
+local whitelistData = getData(whitelistURL)
+local blacklistData = getData(blacklistURL)
+
+if whitelistData and blacklistData then
+    local isWhitelisted = string.find(whitelistData, LocalPlayer.Name)
+    local isBlacklisted = string.find(blacklistData, LocalPlayer.Name)
+
+    if isWhitelisted then
+        print("Player is Whitelisted")
+    elseif isBlacklisted then
+        print("Player is Blacklisted")
+    else
+        print("Player is not in any list")
+    end
+else
+    print("Failed to fetch data from GitHub")
+end
