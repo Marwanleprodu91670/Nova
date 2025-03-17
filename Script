@@ -4,7 +4,7 @@ local LocalPlayer = Players.LocalPlayer
 
 -- GitHub Raw URLs
 local whitelistURL = "https://raw.githubusercontent.com/your-username/your-repo/main/whitelist.txt"
-local blacklistURL = "https://raw.githubusercontent.com/your-username/your-repo/main/blacklist.txt"
+local blacklistURL = "https://raw.githubusercontent.com/Marwanleprodu91670/Paid/refs/heads/main/blacklist"
 
 -- Function to fetch data from GitHub
 local function getData(url)
